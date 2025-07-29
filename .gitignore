@@ -21,5 +21,4 @@ pycache/
 Thumbs.db
 
 # Custom
-xss_payloads.txt
 config.ini

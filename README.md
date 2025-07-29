@@ -1,5 +1,4 @@
-# N0aziXss CerberusX 🍓
-# N0aziXss CerberusX Tool 🔍 
+# N0aziXss CerberusX 🍓 
 
 ## 🌟 Introduction
 **N0aziXss CerberusX** is an ethical XSS scanner designed for security professionals to detect vulnerabilities in web applications.  
@@ -11,10 +10,14 @@
 - 📊 JSON Logging with rotation
 - ⚡ Fast Scanning with concurrent requests
 
+## Requirements ⚙️
+- Python 3.8+
+- Required libraries: `pip install -r requirements.txt`
+
+## Installation 📦
 ```bash
 git clone https://github.com/NazaninNazari/CerberusX.git 
 cd CerberusX-tools  
-pip install -r requirements.txt
 
 # install dependencies
 pip install -r requirements.txt
