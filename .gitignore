@@ -1,0 +1,25 @@
+.qodo
+
+# Logs
+*.log
+*.json
+*.sha256
+
+# Environment
+.env
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+pycache/
+*.pyc
+
+# System
+.DS_Store
+Thumbs.db
+
+# Custom
+xss_payloads.txt
+config.ini
