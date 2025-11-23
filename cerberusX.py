@@ -25,13 +25,33 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 init(autoreset=True)
 console = Console()
 
-# Banner
-BANNER = Figlet(font='slant').renderText('CerberusX')
-console.print(Fore.CYAN + BANNER)
-print(Fore.CYAN + "♦*"*27)
-print(Fore.GREEN + "🍓Professional CerberusX Tool - Secure & Ethical🍓")
+# Banner_One
+PURPLE = '\033[0;35m' 
+END = "\033[0m"
+
+banner = f"""
+  {PURPLE}
+███╗   ██╗ █████╗ ███████╗██╗██╗  ██╗███████╗███████╗                    
+████╗  ██║██╔══██╗╚══███╔╝██║╚██╗██╔╝██╔════╝██╔════╝                    
+██╔██╗ ██║███████║  ███╔╝ ██║ ╚███╔╝ ███████╗███████╗                    
+██║╚██╗██║██╔══██║ ███╔╝  ██║ ██╔██╗ ╚════██║╚════██║                    
+██║ ╚████║██║  ██║███████╗██║██╔╝ ██╗███████║███████║                    
+╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝╚══════╝                    
+                                                                         
+ ██████╗███████╗██████╗ ██████╗ ███████╗██████╗ ██╗   ██╗███████╗██╗  ██╗
+██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝╚██╗██╔╝
+██║     █████╗  ██████╔╝██████╔╝█████╗  ██████╔╝██║   ██║███████╗ ╚███╔╝ 
+██║     ██╔══╝  ██╔══██╗██╔══██╗██╔══╝  ██╔══██╗██║   ██║╚════██║ ██╔██╗ 
+╚██████╗███████╗██║  ██║██████╔╝███████╗██║  ██║╚██████╔╝███████║██╔╝ ██╗
+ ╚═════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ """
+
+print(banner)
+
+# Banner_Two
+print(Fore.CYAN + "♦*"*30)
+print(Fore.RED + "🍓 Professional CerberusX Tool - Secure & Ethical🍓 ")
 print(Fore.YELLOW + "⚠️ Warning: Use --strict-ssl for secure mode (default: off)")
-print(Fore.CYAN + "♦*"*27 + "\n")
+print(Fore.CYAN + "♦*"*30 + "\n")
 
 # Random User-Agent List (Improved)
 USER_AGENTS = [
