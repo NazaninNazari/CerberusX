@@ -43,15 +43,15 @@ banner = f"""
 ██║     █████╗  ██████╔╝██████╔╝█████╗  ██████╔╝██║   ██║███████╗ ╚███╔╝ 
 ██║     ██╔══╝  ██╔══██╗██╔══██╗██╔══╝  ██╔══██╗██║   ██║╚════██║ ██╔██╗ 
 ╚██████╗███████╗██║  ██║██████╔╝███████╗██║  ██║╚██████╔╝███████║██╔╝ ██╗
- ╚═════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ """
+ ╚═════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+{Fore.YELLOW}
+╔═══════════════════════════════════════════════════════════╗
+║      Professional CerberusX Tool - Secure & Ethical       ║
+║  Warning: Use --strict-ssl for secure mode (default: off) ║
+╚═══════════════════════════════════════════════════════════╝
+{Fore.RESET}"""
 
 print(banner)
-
-# Banner_Two
-print(Fore.CYAN + "♦*"*30)
-print(Fore.RED + "🍓 Professional CerberusX Tool - Secure & Ethical🍓 ")
-print(Fore.YELLOW + "⚠️ Warning: Use --strict-ssl for secure mode (default: off)")
-print(Fore.CYAN + "♦*"*30 + "\n")
 
 # Random User-Agent List (Improved)
 USER_AGENTS = [
