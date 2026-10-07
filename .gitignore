@@ -13,12 +13,18 @@ venv/
 # IDE
 .idea/
 .vscode/
-pycache/
+__pycache__/
 *.pyc
 
 # System
 .DS_Store
 Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.bak
 
 # Custom
 config.ini

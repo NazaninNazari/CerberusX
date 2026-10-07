@@ -1,14 +1,18 @@
-# N0aziXss CerberusX 🍓 
+# N0aziXss CerberusX 🍓
 
 ## 🌟 Introduction
-**N0aziXss CerberusX** is an ethical XSS scanner designed for security professionals to detect vulnerabilities in web applications.  
+**N0aziXss CerberusX** is an ethical XSS scanner designed for security professionals to detect vulnerabilities in web applications.
+
+> ⚠️ **Use only against targets you own or have explicit written authorization to test.** Active scanning (crawling, payload injection, subdomain enumeration) against systems outside your authorized scope may be illegal.
 
 ## Features ✨
 - ✅ Multi-Type XSS Detection (Reflected, Stored, DOM-Based)
-- 🕷️ Auto-Crawling for URL discovery
-- 🔄 Advanced Payloads with WAF bypass techniques
-- 📊 JSON Logging with rotation
-- ⚡ Fast Scanning with concurrent requests
+- 🕷️ Auto-Crawling for URL discovery (respects `robots.txt`)
+- 🌐 Subdomain discovery (crt.sh + Wayback Machine, with DNS resolution check)
+- 🔄 116+ payloads with WAF bypass, polyglot, and template-injection techniques
+- 🎯 Confidence scoring (High/Medium/Low) to cut down false positives
+- 📊 JSON logging with automatic rotation and SHA-256 integrity hash
+- ⚡ Concurrent, multi-threaded scanning
 
 ## Requirements ⚙️
 - Python 3.8+
@@ -16,95 +20,111 @@
 
 ## Installation 📦
 ```bash
-git clone https://github.com/NazaninNazari/CerberusX.git 
-cd CerberusX-tools  
+git clone https://github.com/NazaninNazari/CerberusX.git
+cd CerberusX
 
 # install dependencies
 pip install -r requirements.txt
 
 # run the scanner
-python cerberusX.py
+python cerberusX.py -t https://example.com
+```
 
-# Usage Example:
-1.basic command
+## Usage
+
+### 1. Basic scan
 ```bash
 python cerberusX.py -t https://example.com
+```
 
-2.advanced command with all features
+### 2. Advanced scan with all features
 ```bash
 python cerberusX.py -t https://example.com \
     --advanced \
     --strict-ssl \
     --proxy http://localhost:8080 \
     --delay 0.5 \
-    --max-pages 100
+    --max-pages 100 \
+    --threads 20
+```
 
-3.maximum pages to crawl
+### 3. Limit crawl depth
 ```bash
+# Crawl up to 100 pages instead of the default 50
 python cerberusX.py -t https://example.com --max-pages 100
 
-4.specific path only
-```bash
-python cerberusX.py -t https://example.com/api/v1 \
-    --no-crawl
+# Scan only the target URL itself, skip discovering other pages
+python cerberusX.py -t https://example.com --max-pages 1
+```
 
-5.output control
+### 4. Custom payloads and output file
 ```bash
-# Proxy server 
+python cerberusX.py -t https://example.com \
+    --payloads my_payloads.txt \
+    --output results/example_scan.json
+```
+
+### 5. Individual flags
+```bash
+# Route traffic through a proxy (e.g. Burp Suite)
 python cerberusX.py -t https://example.com --proxy http://proxy.example.com:8080
 
-# Enable advanced methods (PUT, DELETE)
+# Also test POST/PUT/DELETE on discovered forms
 python cerberusX.py -t https://example.com --advanced
 
-# Delay between requests (seconds)
+# Delay between requests, in seconds (default: 0.2)
 python cerberusX.py -t https://example.com --delay 0.5
 
-# Sample Output
-♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*
-🍓 Professional XSS Scanner - Ethical Use Only 🍓
-⚠️ Warning: Always get proper authorization before scanning
-♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*♦*
+# Reduce console noise during crawling/subdomain checks
+python cerberusX.py -t https://example.com --quiet
+```
 
-[+] Target: https://example.com
-[+] Scan started at: 2023-11-15 14:30:45
-[+] Using 15 threads
-[+] Strict SSL: Disabled
-[+] Advanced mode: Enabled
+## Command-Line Options
 
-[Phase 1] Crawling website...
-• Found: https://example.com/
-• Found: https://example.com/login
-• Found: https://example.com/search
-• Found: https://example.com/contact
-[✓] Crawled 12 pages in 8.2 seconds
+| Flag | Default | Description |
+|---|---|---|
+| `-t`, `--target` | *(required)* | Target URL or domain |
+| `--delay` | `0.2` | Delay between requests, in seconds |
+| `--strict-ssl` | off | Enable strict SSL certificate verification |
+| `--advanced` | off | Also test POST/PUT/DELETE on discovered forms |
+| `--proxy` | none | Proxy server, e.g. `http://proxy.example.com:8080` |
+| `--max-pages` | `50` | Maximum pages to crawl |
+| `--threads` | `15` | Concurrent scan workers |
+| `--output` | `xss_scan_results.json` | Custom path for the JSON results log |
+| `--payloads` | `xss_payloads.txt` | Path to a custom payload file |
+| `--quiet` | off | Suppress verbose crawl/subdomain output |
 
-[Phase 2] Checking subdomains...
-• Found: admin.example.com
-• Found: api.example.com
-[✓] Discovered 3 subdomains
+## Sample Output
 
-[Phase 3] Scanning for XSS vulnerabilities...
-• Testing: https://example.com/search?q=<payload>
-• Testing: https://example.com/login?username=<payload>
-• Testing: https://admin.example.com/dashboard?id=<payload>
+```
+  CerberusX ASCII banner...
 
-[!] Vulnerabilities Found:
-1. [Reflected XSS] GET https://example.com/search?q=<svg/onload=alert(1)>
-   • Payload: <svg/onload=alert(1)>
-   • Confidence: High
-   • Parameters: q
-   • Response Code: 200
+[Scan] Scanning https://example.com...
 
-2. [DOM-Based XSS] GET https://example.com/dashboard#javascript:alert(1)
-   • Payload: javascript:alert(1)
-   • Source: location.hash
-   • Confidence: Medium
+🕷️ Crawling website to discover all paths...
+[Crawling] Found: https://example.com/login
+[Crawling] Found: https://example.com/search
+[Crawling] Found: https://example.com/contact
 
-3. [Stored XSS] POST https://example.com/comments
-   • Payload: <img src=x onerror=alert(1)>
-   • Stored in: Database
-   • Confidence: High
+🌐 Discovering and checking subdomains...
+✅ 2/4 subdomains resolved
 
-[✓] Scan completed in 1 minute 22 seconds
-[+] Total vulnerabilities found: 3
-[+] Results saved to: scan_results_20231115_143207.json
+✅ Found 14 URLs to scan (Main + Subdomains + Crawled paths)
+
+🔥 Vulnerable URLs found:
+1. [Reflected|High] GET https://example.com/search?q=%3Csvg%2Fonload%3Dalert%281%29%3E
+2. [DOM-Based] GET https://example.com/dashboard#javascript:alert(1)
+3. [Stored (Potential)|High] POST https://example.com/comments
+
+⏱️ Scan finished in 42.1s — 14 URLs tested, 3 findings.
+
+Enter number to test in browser (0 to exit):
+```
+
+Full results (timestamp, type, and the exact payload/URL for every finding) are written to `xss_scan_results.json` as they're discovered, with a `xss_scan_results.sha256` hash file alongside it for integrity verification.
+
+## Payloads
+Payloads are loaded from `xss_payloads.txt` in the working directory (or the file passed to `--payloads`), one payload per line. Lines starting with a section header (`# === Name ===`) are skipped; everything else, including lines that start with `#` for other reasons (e.g. the `#{alert(1)}` template-injection payload), is loaded. If no payload file is found, the tool falls back to a small built-in default list.
+
+## License
+MIT — see [LICENSE](LICENSE).
